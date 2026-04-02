@@ -7,6 +7,12 @@ SKILL_DIR="/root/.openclaw/workspace/skills/notion-workspace"
 
 mkdir -p "$ENV_DIR"
 
+if [[ ! -f "$SKILL_DIR/scripts/notion_api.py" ]]; then
+  echo "Notion skill files were not found yet."
+  echo "Run install-notion-workspace.sh first, then run this script."
+  exit 1
+fi
+
 echo "Configure Notion credentials"
 echo ""
 echo "This stores your Notion API key at:"

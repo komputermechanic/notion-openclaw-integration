@@ -79,7 +79,7 @@ echo ""
 if [[ ! -f "$ENV_FILE" ]]; then
   echo "No Notion credentials file found yet."
   echo "Run this next in your terminal to configure credentials securely:"
-  echo "  bash /root/configure-notion-credentials.sh"
+  echo "  bash configure-notion-credentials.sh"
   exit 0
 fi
 
