@@ -70,23 +70,22 @@ PROMPT
   esac
 fi
 
-read -r -p "Paste your Notion secret key: " notion_key
-
-if [[ -z "$notion_key" ]]; then
-  echo "No key entered. Aborting."
+if [[ ! -f "$ENV_FILE" ]]; then
+  echo "No Notion credentials file found yet."
+  echo ""
+  echo "Create it with these commands in your terminal:"
+  echo "mkdir -p ~/.openclaw/credentials"
+  echo 'printf '''NOTION_API_KEY=your_secret_here\n''' > ~/.openclaw/credentials/notion-workspace.env'
+  echo "chmod 600 ~/.openclaw/credentials/notion-workspace.env"
+  echo ""
+  echo "Then run this installer again."
   exit 1
 fi
-
-
-cat > "$ENV_FILE" <<EOF
-NOTION_API_KEY=$notion_key
-EOF
-chmod 600 "$ENV_FILE"
 
 rm -f "$SKILL_DIR/page_ids.txt"
 
 echo ""
-echo "Saved credentials to $ENV_FILE"
+echo "Using credentials from $ENV_FILE"
 echo "Verifying access..."
 python3 "$SKILL_DIR/scripts/notion_api.py" me
 

@@ -9,9 +9,18 @@ Connect a Notion workspace to OpenClaw through the official Notion API.
 
 Do **not** paste your Notion secret into chat.
 
-Best path: run the installer directly in your terminal.
+Best path: save the secret locally in your terminal first, then run the installer.
 
-### Quick install
+### Step 1: save your Notion key locally in the terminal
+
+```bash
+mkdir -p ~/.openclaw/credentials
+printf 'NOTION_API_KEY=your_secret_here
+' > ~/.openclaw/credentials/notion-workspace.env
+chmod 600 ~/.openclaw/credentials/notion-workspace.env
+```
+
+### Step 2: run the installer
 
 ```bash
 wget -O install-notion-workspace.sh https://raw.githubusercontent.com/komputermechanic/notion-openclaw-integration/main/install-notion-workspace.sh
@@ -21,7 +30,6 @@ bash install-notion-workspace.sh
 ## What the installer does
 
 - installs the skill into `/root/.openclaw/workspace/skills/notion-workspace/`
-- asks for the Notion secret key
 - stores credentials in `~/.openclaw/credentials/notion-workspace.env`
 - verifies the connection
 - prints the final prompt to give the OpenClaw agent
