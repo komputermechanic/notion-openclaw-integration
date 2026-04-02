@@ -1,6 +1,6 @@
 ---
 name: notion-workspace
-description: Access a connected Notion workspace through the Notion API for search, page lookup, page block reads, simple database queries, page creation, and explicit block appends. Use when the user wants to read from or write to Notion, inspect workspace access, find a page or database, work with a known page ID, or update an existing Notion page from this OpenClaw workspace.
+description: Access a connected Notion workspace through the Notion API for search, page lookup, page block reads, simple database queries, page creation, and explicit block appends. Use when the user wants to read from or write to Notion, inspect workspace access, find a page or database, or update an existing Notion page from this OpenClaw workspace.
 ---
 
 # Notion Workspace
