@@ -16,3 +16,5 @@ NOTION_API_KEY=your_secret_here
 
 If a user asks where the integration is stored, point them to the skill directory and the credentials file above.
 
+
+For safer setup, have the user enter the Notion secret in the terminal only, not in chat.

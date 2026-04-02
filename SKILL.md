@@ -31,6 +31,8 @@ Use the bundled helper for deterministic Notion API access.
 ## Credential handling
 
 - Expect the token in `~/.openclaw/credentials/notion-workspace.env` as `NOTION_API_KEY=...`.
+- Do not ask the user to paste the Notion secret into chat when a terminal-based setup path is available.
+- Prefer terminal-based entry or direct file writing for the secret.
 - Do not print the token back to the user.
 - Treat pasted Notion secrets as exposed and recommend rotation if they appeared in chat logs.
 
