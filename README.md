@@ -5,15 +5,11 @@ Created by **Komputer Mechanic**
 
 Connect a Notion workspace to OpenClaw through the official Notion API.
 
-## Recommended safe setup
+## Recommended install
 
 Do **not** paste your Notion secret into chat.
 
-Recommended flow:
-1. Give the repo URL to your OpenClaw agent
-2. Let the agent tell you what terminal command to run
-3. Enter your Notion secret only in the terminal prompt
-4. Tell the agent when setup is complete
+Best path: run the installer directly in your terminal.
 
 ### Quick install
 
@@ -70,3 +66,9 @@ https://github.com/komputermechanic/notion-openclaw-integration
 
 Do not ask me to paste my Notion secret into chat. Instead, tell me the exact terminal commands to run locally, and I will enter the secret in the terminal only. After that, tell me the final prompt I should give you so you know Notion is configured in this workspace.
 ```
+
+## After installation
+
+After the installer finishes, it prints the prompt you should give your OpenClaw agent so it knows the Notion integration is available in your workspace.
+
+You usually do **not** need the agent to perform the installation itself.
