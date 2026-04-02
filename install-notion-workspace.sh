@@ -70,21 +70,19 @@ PROMPT
   esac
 fi
 
-if [[ ! -f "$ENV_FILE" ]]; then
-  echo "No Notion credentials file found yet."
-  echo ""
-  echo "Create it with these commands in your terminal:"
-  echo "mkdir -p ~/.openclaw/credentials"
-  echo 'printf '''NOTION_API_KEY=your_secret_here\n''' > ~/.openclaw/credentials/notion-workspace.env'
-  echo "chmod 600 ~/.openclaw/credentials/notion-workspace.env"
-  echo ""
-  echo "Then run this installer again."
-  exit 1
-fi
-
 rm -f "$SKILL_DIR/page_ids.txt"
 
 echo ""
+echo "Skill installation complete."
+echo "Skill location: $SKILL_DIR"
+echo ""
+if [[ ! -f "$ENV_FILE" ]]; then
+  echo "No Notion credentials file found yet."
+  echo "Run this next in your terminal to configure credentials securely:"
+  echo "  bash /root/configure-notion-credentials.sh"
+  exit 0
+fi
+
 echo "Using credentials from $ENV_FILE"
 echo "Verifying access..."
 python3 "$SKILL_DIR/scripts/notion_api.py" me
