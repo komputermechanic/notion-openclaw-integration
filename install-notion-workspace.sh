@@ -45,8 +45,6 @@ if [[ -f "$ENV_FILE" ]]; then
       echo "Notion is ready."
       echo "Skill location: $SKILL_DIR"
       echo "Credentials location: $ENV_FILE"
-      if [[ -f "$SKILL_DIR/page_ids.txt" ]]; then
-      fi
       echo ""
       echo "--------------------------------------------------"
       echo "Installation complete."
