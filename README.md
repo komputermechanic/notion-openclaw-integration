@@ -5,46 +5,6 @@ Created by **Komputer Mechanic**
 
 Connect a Notion workspace to OpenClaw through the official Notion API.
 
-## Recommended setup
-
-Do **not** paste your Notion secret into chat.
-
-### Step 1: install the skill files
-
-**Cautious path (recommended): download first, then run**
-
-```bash
-wget -O install-notion-workspace.sh https://raw.githubusercontent.com/komputermechanic/notion-openclaw-integration/main/install-notion-workspace.sh
-bash install-notion-workspace.sh
-```
-
-**Fast path: stream directly to bash**
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/komputermechanic/notion-openclaw-integration/main/install-notion-workspace.sh | bash
-```
-
-If an agent already installed the skill files for you, start at Step 2.
-
-### Step 2: configure credentials securely in the terminal
-
-**Cautious path (recommended): download first, then run**
-
-```bash
-wget -O configure-notion-credentials.sh https://raw.githubusercontent.com/komputermechanic/notion-openclaw-integration/main/configure-notion-credentials.sh
-bash configure-notion-credentials.sh
-```
-
-**Fast path: stream directly to bash**
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/komputermechanic/notion-openclaw-integration/main/configure-notion-credentials.sh | bash
-```
-
-### Step 3: give the final prompt to your OpenClaw agent
-
-After setup, use the prompt printed by the installer/configuration flow.
-
 ## Agent-assisted setup options
 
 If you prefer, you can give this GitHub repo to your OpenClaw agent and let it guide the setup.
@@ -88,6 +48,47 @@ What to expect:
 - the agent may ask you to run one or two terminal commands
 - the agent should not ask for the secret in chat
 - once setup is complete, the agent can start using the integration
+
+
+## Recommended setup
+
+Do **not** paste your Notion secret into chat.
+
+### Step 1: install the skill files
+
+**Cautious path (recommended): download first, then run**
+
+```bash
+wget -O install-notion-workspace.sh https://raw.githubusercontent.com/komputermechanic/notion-openclaw-integration/main/install-notion-workspace.sh
+bash install-notion-workspace.sh
+```
+
+**Fast path: stream directly to bash**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/komputermechanic/notion-openclaw-integration/main/install-notion-workspace.sh | bash
+```
+
+If an agent already installed the skill files for you, start at Step 2.
+
+### Step 2: configure credentials securely in the terminal
+
+**Cautious path (recommended): download first, then run**
+
+```bash
+wget -O configure-notion-credentials.sh https://raw.githubusercontent.com/komputermechanic/notion-openclaw-integration/main/configure-notion-credentials.sh
+bash configure-notion-credentials.sh
+```
+
+**Fast path: stream directly to bash**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/komputermechanic/notion-openclaw-integration/main/configure-notion-credentials.sh | bash
+```
+
+### Step 3: give the final prompt to your OpenClaw agent
+
+After setup, use the prompt printed by the installer/configuration flow.
 
 ## What each script does
 
