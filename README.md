@@ -16,6 +16,8 @@ wget -O install-notion-workspace.sh https://raw.githubusercontent.com/komputerme
 bash install-notion-workspace.sh
 ```
 
+If an agent already installed the skill files for you, start at Step 2.
+
 ### Step 2: configure credentials securely in the terminal
 
 ```bash

@@ -37,7 +37,29 @@ echo "Saved credentials to:"
 echo "  $ENV_FILE"
 
 echo "Verifying access..."
-python3 "$SKILL_DIR/scripts/notion_api.py" me
+if ! python3 "$SKILL_DIR/scripts/notion_api.py" me; then
+  echo ""
+  echo "Verification failed. Check the key, make sure the Notion integration is active, and confirm network access."
+  exit 1
+fi
 
 echo ""
 echo "Credentials configured successfully."
+echo ""
+echo "--------------------------------------------------"
+echo "Now tell your OpenClaw agent about this setup with the prompt below:"
+echo "--------------------------------------------------"
+cat <<PROMPT
+Notion is configured in this workspace.
+
+Use the Notion skill at:
+/root/.openclaw/workspace/skills/notion-workspace
+
+Credentials are stored at:
+$ENV_FILE
+
+When I ask you to read from or write to Notion, use this skill and its helper script.
+
+Main helper script:
+/root/.openclaw/workspace/skills/notion-workspace/scripts/notion_api.py
+PROMPT
