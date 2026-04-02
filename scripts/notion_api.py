@@ -57,9 +57,24 @@ def request(method: str, path: str, payload=None, params=None):
     print(json.dumps({"ok": True, "status": resp.status_code, "response": data}, indent=2))
 
 
+
+def extract_title(obj):
+    props = obj.get("properties", {})
+    title_prop = props.get("title", {})
+    title = title_prop.get("title", [])
+    return "".join(part.get("plain_text", "") for part in title).strip()
+
+
+def print_search_plain(results):
+    for item in results:
+        kind = item.get("object", "unknown")
+        title = extract_title(item) or "(untitled)"
+        print(f"[{kind}] {title} :: {item.get('id')} :: {item.get('url', '')}")
+
+
 def main():
     if len(sys.argv) < 2:
-        print("Usage: notion_api.py <me|search|page|database-query|append-blocks|create-page|page-blocks> [args...]", file=sys.stderr)
+        print("Usage: notion_api.py <me|search|search-plain|page|page-title|database-query|append-blocks|append-paragraph|append-heading|append-todo|create-page|page-blocks> [args...]", file=sys.stderr)
         sys.exit(2)
 
     cmd = sys.argv[1]
@@ -74,11 +89,36 @@ def main():
         request("POST", "/search", payload=payload)
         return
 
+    if cmd == "search-plain":
+        query = sys.argv[2] if len(sys.argv) > 2 else ""
+        payload = {"query": query, "page_size": 10}
+        url = f"{API_BASE}/search"
+        resp = requests.request("POST", url, headers=headers(), json=payload, timeout=30)
+        data = resp.json()
+        if not resp.ok:
+            print(json.dumps({"ok": False, "status": resp.status_code, "response": data}, indent=2))
+            sys.exit(1)
+        print_search_plain(data.get("results", []))
+        return
+
     if cmd == "page":
         if len(sys.argv) < 3:
             print("Usage: notion_api.py page <page-id>", file=sys.stderr)
             sys.exit(2)
         request("GET", f"/pages/{sys.argv[2]}")
+        return
+
+    if cmd == "page-title":
+        if len(sys.argv) < 3:
+            print("Usage: notion_api.py page-title <page-id>", file=sys.stderr)
+            sys.exit(2)
+        url = f"{API_BASE}/pages/{sys.argv[2]}"
+        resp = requests.request("GET", url, headers=headers(), timeout=30)
+        data = resp.json()
+        if not resp.ok:
+            print(json.dumps({"ok": False, "status": resp.status_code, "response": data}, indent=2))
+            sys.exit(1)
+        print(extract_title(data) or "(untitled)")
         return
 
     if cmd == "page-blocks":
@@ -101,6 +141,30 @@ def main():
             print("Usage: notion_api.py append-blocks <block-id> <json-children>", file=sys.stderr)
             sys.exit(2)
         payload = {"children": json.loads(sys.argv[3])}
+        request("PATCH", f"/blocks/{sys.argv[2]}/children", payload=payload)
+        return
+
+    if cmd == "append-paragraph":
+        if len(sys.argv) < 4:
+            print("Usage: notion_api.py append-paragraph <block-id> <text>", file=sys.stderr)
+            sys.exit(2)
+        payload = {"children": [{"object": "block", "type": "paragraph", "paragraph": {"rich_text": [{"type": "text", "text": {"content": sys.argv[3]}}]}}]}
+        request("PATCH", f"/blocks/{sys.argv[2]}/children", payload=payload)
+        return
+
+    if cmd == "append-heading":
+        if len(sys.argv) < 4:
+            print("Usage: notion_api.py append-heading <block-id> <text>", file=sys.stderr)
+            sys.exit(2)
+        payload = {"children": [{"object": "block", "type": "heading_2", "heading_2": {"rich_text": [{"type": "text", "text": {"content": sys.argv[3]}}]}}]}
+        request("PATCH", f"/blocks/{sys.argv[2]}/children", payload=payload)
+        return
+
+    if cmd == "append-todo":
+        if len(sys.argv) < 4:
+            print("Usage: notion_api.py append-todo <block-id> <text>", file=sys.stderr)
+            sys.exit(2)
+        payload = {"children": [{"object": "block", "type": "to_do", "to_do": {"rich_text": [{"type": "text", "text": {"content": sys.argv[3]}}], "checked": False}}]}
         request("PATCH", f"/blocks/{sys.argv[2]}/children", payload=payload)
         return
 
