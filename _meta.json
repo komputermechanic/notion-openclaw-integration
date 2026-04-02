@@ -1,4 +1,6 @@
 {
   "author": "Komputer Mechanic",
-  "website": "https://komputermechanic.com/"
+  "website": "https://komputermechanic.com/",
+  "title": "Notion Workspace",
+  "summary": "A clean OpenClaw skill for connecting a Notion workspace through the official Notion API."
 }

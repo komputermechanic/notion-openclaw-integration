@@ -1,6 +1,6 @@
 ---
 name: notion-workspace
-description: Access a connected Notion workspace through the Notion API for search, page lookup, page block reads, simple database queries, page creation, and explicit block appends. Use when the user wants to read from or write to Notion, inspect workspace access, find a page or database, or update an existing Notion page from this OpenClaw workspace.
+description: Access a connected Notion workspace through the official Notion API for search, page lookup, block reads, database queries, page creation, and explicit block appends. Use when the user wants to read from or write to Notion, inspect workspace access, find a page or database, or update an existing Notion page from an OpenClaw workspace.
 ---
 
 # Notion Workspace
@@ -8,15 +8,15 @@ description: Access a connected Notion workspace through the Notion API for sear
 Created by **Komputer Mechanic**  
 Website: <https://komputermechanic.com/>
 
-Use the bundled script for deterministic Notion API access.
+Use the bundled helper for deterministic Notion API access.
 
 ## Core workflow
 
 1. Verify access with `scripts/notion_api.py me`.
-2. Discover targets with `scripts/notion_api.py search "query"` when IDs are not known.
+2. Discover targets with `scripts/notion_api.py search "query"` when IDs are unknown.
 3. Read before writing.
-4. Keep writes small and explicit.
-5. Tell the user when a Notion page or database is missing because the integration has not been shared to it yet.
+4. Keep writes small, explicit, and easy to review.
+5. Tell the user when a page or database is missing because the integration has not been shared to it yet.
 
 ## Commands
 
@@ -34,8 +34,8 @@ Use the bundled script for deterministic Notion API access.
 - Do not print the token back to the user.
 - Treat pasted Notion secrets as exposed and recommend rotation if they appeared in chat logs.
 
-## Additional references
+## References
 
 - Read `references/install.md` for installation and storage paths.
-- Read `references/usage.md` for examples.
+- Read `references/usage.md` for command examples.
 - Read `references/security.md` for safety notes.
