@@ -1,6 +1,16 @@
 {
   "author": "Komputer Mechanic",
   "website": "https://komputermechanic.com/",
-  "title": "Notion Workspace",
-  "summary": "A clean OpenClaw skill for connecting a Notion workspace through the official Notion API."
+  "title": "OpenClaw Notion Integration",
+  "summary": "Connects a Notion workspace to OpenClaw via the official Notion API. Supports page reads, database queries, content appends, and page creation. Two-script setup: install skill files, then configure credentials securely in the terminal.",
+  "scripts": {
+    "install": "install-notion-workspace.sh",
+    "configure": "configure-notion-credentials.sh",
+    "uninstall": "uninstall-notion-workspace.sh"
+  },
+  "skill": "notion-workspace",
+  "skill_path": "/root/.openclaw/workspace/skills/notion-workspace",
+  "credentials_path": "~/.openclaw/credentials/notion-workspace.env",
+  "helper": "scripts/notion_api.py",
+  "capabilities": ["search", "read-page", "read-blocks", "database-query", "append-blocks", "create-page"]
 }
