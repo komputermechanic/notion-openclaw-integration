@@ -81,7 +81,7 @@ print_agent_prompt() {
 collect_api_key() {
   echo "Do not paste your Notion secret into chat. Enter it here in the terminal only."
   echo ""
-  read -r -s -p "Paste your Notion secret key: " NOTION_KEY
+  read -r -p "Paste your Notion secret key: " NOTION_KEY
   echo ""
   echo ""
 
