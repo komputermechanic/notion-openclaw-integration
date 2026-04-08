@@ -45,12 +45,13 @@ echo -e "${BOLD}What do you want to do?${NC}"
 echo ""
 echo "  1) Install        — Set up Notion integration from scratch"
 echo "  2) Update key     — Replace your Notion API key and re-verify"
-echo "  3) Uninstall      — Remove Notion integration from OpenClaw"
+echo "  3) Update skill   — Pull latest skill files (keeps credentials)"
+echo "  4) Uninstall      — Remove Notion integration from OpenClaw"
 echo ""
-read -p "Enter 1, 2 or 3: " ACTION_CHOICE
+read -p "Enter 1, 2, 3 or 4: " ACTION_CHOICE
 echo ""
 
-if [ "$ACTION_CHOICE" != "1" ] && [ "$ACTION_CHOICE" != "2" ] && [ "$ACTION_CHOICE" != "3" ]; then
+if [[ ! "$ACTION_CHOICE" =~ ^[1-4]$ ]]; then
   echo -e "${RED}❌ Invalid choice. Exiting.${NC}"
   exit 1
 fi
@@ -196,9 +197,33 @@ if [ "$ACTION_CHOICE" = "2" ]; then
 fi
 
 # ============================================
-# UNINSTALL FLOW
+# UPDATE SKILL FILES FLOW
 # ============================================
 if [ "$ACTION_CHOICE" = "3" ]; then
+
+  if [ ! -d "$SKILL_DIR" ]; then
+    echo -e "${RED}❌ Notion skill is not installed yet.${NC}"
+    echo "Run this script again and choose option 1 to install first."
+    exit 1
+  fi
+
+  echo -e "${BOLD}Updating skill files...${NC}"
+  echo "Your credentials will not be touched."
+  echo ""
+  fetch_skill_files
+
+  echo -e "${GREEN}============================================${NC}"
+  echo -e "${GREEN}  Skill updated successfully!${NC}"
+  echo -e "${GREEN}============================================${NC}"
+  echo ""
+  print_agent_prompt
+  exit 0
+fi
+
+# ============================================
+# UNINSTALL FLOW
+# ============================================
+if [ "$ACTION_CHOICE" = "4" ]; then
 
   echo -e "${YELLOW}This will remove:${NC}"
   echo "  - Notion skill folder at $SKILL_DIR"
